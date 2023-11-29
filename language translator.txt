@@ -1,0 +1,109 @@
+import speech_recognition as sr
+
+x = sr.Recognizer()
+with sr.Microphone() as source:
+    print("Speak anything in English .")
+    a = x.listen(source)
+    try:
+        text = x.recognize_google(a)
+        print("You said : ", text)
+    except:
+        print("Sorry could not recognize what you said")
+
+print("select any language given below :")
+print("1.Hindi")
+print("2.Arabic")
+print("3.Bengali")
+print("4.French")
+print("5.Dutch")
+print("6.English")
+print("7.German")
+print("8.kannada")
+print("9.Telugu")
+print("10.Punjabi")
+
+from googletrans import Translator
+
+
+def hin():
+    translator = Translator()
+    out = translator.translate(text, dest="hi")
+    print("In Hindi :", out.text)
+
+
+def arabic():
+    translator = Translator()
+    out = translator.translate(text, dest="ar")
+    print("In Arabic :", out.text)
+
+
+def bengali():
+    translator = Translator()
+    out = translator.translate(text, dest="bn")
+    print("In Bengali :", out.text)
+
+
+def french():
+    translator = Translator()
+    out = translator.translate(text, dest="fr")
+    print("In French :", out.text)
+
+
+def dutch():
+    translator = Translator()
+    out = translator.translate(text, dest="nl")
+    print("In Dutch :", out.text)
+
+
+def english():
+    translator = Translator()
+    out = translator.translate(text, dest="en")
+    print("In English :", out.text)
+
+
+def german():
+    translator = Translator()
+    out = translator.translate(text, dest="de")
+    print("In German :", out.text)
+
+
+def kannada():
+    translator = Translator()
+    out = translator.translate(text, dest="kn")
+    print("In Kannada :", out.text)
+
+def punjabi():
+    translator = Translator()
+    out = translator.translate(text, dest="pa")
+    print("In Punjabi :", out.text)
+
+def telugu():
+    translator = Translator()
+    out = translator.translate(text, dest="pa")
+    print("In Telugu :", out.text)
+
+def default():
+    return "please enter valid choice"
+
+
+choice = {
+    1: hin,
+    2: arabic,
+    3: bengali,
+    4: french,
+    5: dutch,
+    6: english,
+    7: german,
+    8: kannada,
+    9: telugu,
+    10: punjabi
+}
+
+
+def switch(slang):
+    return choice.get(slang, default)()
+
+
+print("\nChoose number from above list.")
+b = int(input("Enter the number of language in which you want to convert :"))
+print(switch(b))
